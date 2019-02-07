@@ -4,7 +4,7 @@ public class QueenBoard{
 
   //constructor
   public QueenBoard(int size){
-    board = new int[size][size];  
+    board = new int[size][size]; //initializes square array
   }
 
   //private methods
@@ -30,7 +30,15 @@ public class QueenBoard{
   *excludes the character up to the *)
   */
   public String toString(){
-    return "";
+    String output = "";
+    for (int r = 0; r < board.length; r++){
+      for (int c = 0; c < board[r].length; c++){
+        if (board[r][c] == -1) output += "Q";
+        else output += "_";
+        if (c == board[r].length - 1) output += "\n";
+      }
+    }
+    return output;
   }
 
 
