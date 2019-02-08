@@ -18,7 +18,7 @@ public class QueenBoard{
     }
     return true; //successfully placed down queen and added threatening positions
   }
-  
+
   private boolean removeQueen(int r, int c){
     return true;
   }
@@ -43,6 +43,7 @@ public class QueenBoard{
       for (int c = 0; c < board[r].length; c++){
         if (board[r][c] == -1) output += "Q";
         else output += "_";
+        //else output += ""+board[r][c]; //testing for threatened positions
         if (c == board[r].length - 1) output += "\n";
       }
     }
