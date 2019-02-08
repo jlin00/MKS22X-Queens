@@ -9,8 +9,16 @@ public class QueenBoard{
 
   //private methods
   private boolean addQueen(int r, int c){
-    return true;
+    if (board[r][c] != 0) return false; //if there is already a queen or position is threatened
+    else board[r][c] = -1; //adds queen otherwise
+    for (int x = 1; x < board.length - c; x++){ //x signifies the increment/decrement to row/column numbers
+      board[r][c+x]++; //all positions in the same row as the queen are threatened
+      if (r - x >= 0) board[r-x][c+x]++; //upwards diagonal are threatened
+      if (r + x < board.length) board[r+x][c+x]++; //downwards diagonal are threatened
+    }
+    return true; //successfully placed down queen and added threatening positions
   }
+  
   private boolean removeQueen(int r, int c){
     return true;
   }
