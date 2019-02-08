@@ -20,7 +20,14 @@ public class QueenBoard{
   }
 
   private boolean removeQueen(int r, int c){
-    return true;
+    if (board[r][c] != -1) return false; //if there is no queen here
+    else board[r][c] = 0; //removes queen otherwise
+    for (int x = 1; x < board.length - c; x++){ //x signifies the increment/decrement to row/column numbers
+      board[r][c+x]--; //all positions in the same row as the queen are no longer threatened
+      if (r - x >= 0) board[r-x][c+x]--; //upwards diagonal are no longer threatened
+      if (r + x < board.length) board[r+x][c+x]--; //downwards diagonal are no longer threatened
+    }
+    return true; //successfully removed queen and removed threatening positions
   }
 
   //public methods
