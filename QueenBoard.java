@@ -64,10 +64,14 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public boolean solve(){
+    for (int x = 0; x < board.length; x++){
+      for (int y = 0; y < board[x].length; x++){
+        if (board[x][y] != 0) throw new IllegalStateException(); //throws exception when there is nonzero value
+      }
+    }
     return solveHelper(0,0);
   }
 
-  //exception placed into this function instead
   public boolean solveHelper(int r, int c){
     if (c < 0) return false; //when you exhaust all options from first row
     return true;
