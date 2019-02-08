@@ -49,8 +49,8 @@ public class QueenBoard{
     for (int r = 0; r < board.length; r++){
       for (int c = 0; c < board[r].length; c++){
         if (board[r][c] == -1) output += "Q";
-        else output += "_";
-        //else output += ""+board[r][c]; //testing for threatened positions
+        else output += "_ ";
+        //else output += board[r][c]+ " "; //testing for threatened positions
         if (c == board[r].length - 1) output += "\n";
       }
     }
@@ -64,6 +64,12 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public boolean solve(){
+    return solveHelper(0,0);
+  }
+
+  //exception placed into this function instead
+  public boolean solveHelper(int r, int c){
+    if (c < 0) return false; //when you exhaust all options from first row
     return true;
   }
 
