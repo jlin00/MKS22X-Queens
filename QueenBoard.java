@@ -41,6 +41,14 @@ public class QueenBoard{
     return true;
   }
 
+  public void clearBoard(){
+    for (int r = 0; r < board.length; r++){
+      for (int c = 0; c < board[r].length; c++){
+        board[r][c] = 0;
+      }
+    }
+  }
+
   /**
   *@return The output string formatted as follows:
   *All numbers that represent queens are replaced with 'Q'
@@ -57,7 +65,7 @@ public class QueenBoard{
     String output = "";
     for (int r = 0; r < board.length; r++){
       for (int c = 0; c < board[r].length; c++){
-        if (board[r][c] == -1) output += "Q";
+        if (board[r][c] == -1) output += "Q ";
         else output += "_ ";
         //else output += board[r][c]+ " "; //testing for threatened positions
         if (c == board[r].length - 1) output += "\n";
@@ -73,13 +81,13 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public boolean solve(){
-    if (!isEmpty()) throw new IllegalStateException("Board is not empty!");
-    return solveHelper(0,0);
+    if (!isEmpty()) throw new IllegalStateException(); //exception
+    return solveHelper(0,0); //runs recursive function
   }
 
   public boolean solveHelper(int r, int c){
     if (c >= board.length) return true; //if all the columns are filled in, board is solved
-    while (r < board.length){ //loops through rows
+    while (r < board.length){
       if (addQueen(r,c)){ //if queen can be added
         if (solveHelper(0,c+1)) return true; //try adding to next column
         removeQueen(r,c); //if cannot add to next columns, remove queen
@@ -95,21 +103,23 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
-    if (!isEmpty()) throw new IllegalStateException("Board is not empty!");
-    return 0;
+    if (!isEmpty()) throw new IllegalStateException(); //exception
+    int count = countHelper(0,0); //runs recursive function but does not return it
+    clearBoard(); //leaves board filled with 0's after
+    return count;
   }
 
   public int countHelper(int r, int c){ //like solveHelper, but modified to return number of solutions
     if (c >= board.length) return 1; //if filled in, counts as one solution
     int count = 0; //counter
-    while (r < board.length){ //loops through rows
+    while (r < board.length){
       if (addQueen(r,c)){ //if queen is successfully placed
         count += countHelper(0,c+1); //recursive call to return either 0 or 1
         removeQueen(r,c); //removes queen after recursive call
       }
-      r++; //try next row 
+      r++;
     }
-    return count;
+    return count; //after every position has been tried
   }
 
 }
