@@ -31,6 +31,7 @@ public class Driver{
     System.out.println(x8);
     */
 
+    //testing out solve
     System.out.println(x1.solve()); //true
     System.out.println(x1);
     System.out.println(x2.solve()); //false
@@ -53,6 +54,39 @@ public class Driver{
     System.out.println(x10);
     System.out.println(x11.solve()); //true
     System.out.println(x11);
+
+    //testing out count
+    try {
+      System.out.println(x1.countSolutions());
+    }
+    catch (IllegalStateException e){
+      System.out.println("Board is not empty!");
+    }
+
+    x1.clearBoard();
+    x2.clearBoard();
+    x3.clearBoard();
+    x4.clearBoard();
+    x5.clearBoard();
+    x6.clearBoard();
+    x7.clearBoard();
+    x8.clearBoard();
+    x9.clearBoard();
+    x10.clearBoard();
+    x11.clearBoard();
+
+    System.out.println(x1.countSolutions()); //1 unique, 1 total
+    System.out.println(x2.countSolutions()); //0 unique, 0 total
+    System.out.println(x3.countSolutions()); //0 unique, 0 total
+    System.out.println(x4.countSolutions()); //1 unique, 2 total
+    System.out.println(x5.countSolutions()); //2 unique, 10 total
+    System.out.println(x6.countSolutions()); //1 unique, 4 total
+    System.out.println(x7.countSolutions()); //6 unique, 40 total
+    System.out.println(x8.countSolutions()); //12 unique, 92 total
+    System.out.println(x9.countSolutions()); //46 unique, 352 total
+    System.out.println(x10.countSolutions()); //92 unique, 724 total
+    System.out.println(x11.countSolutions()); //341 unique, 2680 total
+
 
 
   }
