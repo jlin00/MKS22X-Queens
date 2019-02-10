@@ -32,6 +32,15 @@ public class QueenBoard{
 
   //public methods
 
+  public boolean isEmpty(){
+    for (int r = 0; r < board.length; r++){
+      for (int c = 0; c < board[r].length; c++){
+        if (board[r][c] != 0) return false;
+      }
+    }
+    return true;
+  }
+
   /**
   *@return The output string formatted as follows:
   *All numbers that represent queens are replaced with 'Q'
@@ -64,11 +73,7 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public boolean solve(){
-    for (int x = 0; x < board.length; x++){
-      for (int y = 0; y < board[x].length; y++){
-        if (board[x][y] != 0) throw new IllegalStateException(); //throws exception when there is nonzero value
-      }
-    }
+    if (!isEmpty()) throw new IllegalStateException("Board is not empty!");
     return solveHelper(0,0);
   }
 
@@ -90,6 +95,7 @@ public class QueenBoard{
   *@throws IllegalStateException when the board starts with any non-zero value
   */
   public int countSolutions(){
+    if (!isEmpty()) throw new IllegalStateException("Board is not empty!");
     return 0;
   }
 
