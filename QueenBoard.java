@@ -99,4 +99,17 @@ public class QueenBoard{
     return 0;
   }
 
+  public int countHelper(int r, int c){ //like solveHelper, but modified to return number of solutions
+    if (c >= board.length) return 1; //if filled in, counts as one solution
+    int count = 0; //counter
+    while (r < board.length){ //loops through rows
+      if (addQueen(r,c)){ //if queen is successfully placed
+        count += countHelper(0,c+1); //recursive call to return either 0 or 1
+        removeQueen(r,c); //removes queen after recursive call
+      }
+      r++; //try next row 
+    }
+    return count;
+  }
+
 }
