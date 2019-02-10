@@ -65,7 +65,7 @@ public class QueenBoard{
   */
   public boolean solve(){
     for (int x = 0; x < board.length; x++){
-      for (int y = 0; y < board[x].length; x++){
+      for (int y = 0; y < board[x].length; y++){
         if (board[x][y] != 0) throw new IllegalStateException(); //throws exception when there is nonzero value
       }
     }
@@ -73,8 +73,15 @@ public class QueenBoard{
   }
 
   public boolean solveHelper(int r, int c){
-    if (c < 0) return false; //when you exhaust all options from first row
-    return true;
+    if (c >= board.length) return true; //if all the columns are filled in, board is solved
+    while (r < board.length){ //loops through rows
+      if (addQueen(r,c)){ //if queen can be added
+        if (solveHelper(0,c+1)) return true; //try adding to next column
+        removeQueen(r,c); //if cannot add to next columns, remove queen
+      }
+      r++; //try next row
+    }
+    return false; //if none of the rows work, board is unsolveable 
   }
 
   /**
