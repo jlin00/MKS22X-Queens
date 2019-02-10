@@ -80,8 +80,9 @@ public class QueenBoard{
         removeQueen(r,c); //if cannot add to next columns, remove queen
       }
       r++; //try next row
+      if (c == 0 && r >= board.length / 2 + board.length % 2) return false; //if exhausted half of options from first column
     }
-    return false; //if none of the rows work, board is unsolveable 
+    return false; //if none of the rows work, board is unsolveable
   }
 
   /**
