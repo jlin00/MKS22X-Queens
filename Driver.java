@@ -87,6 +87,11 @@ public class Driver{
     System.out.println(x10.countSolutions()); //92 unique, 724 total
     System.out.println(x11.countSolutions()); //341 unique, 2680 total
 
+    QueenBoard x14 = new QueenBoard(14);
+    System.out.println(x14.solve());
+    System.out.println(x14);
+    x14.clearBoard();
+    System.out.println(x14.countSolutions());
 
 
   }
