@@ -82,17 +82,16 @@ public class QueenBoard{
   */
   public boolean solve(){
     if (!isEmpty()) throw new IllegalStateException(); //exception
-    return solveHelper(0,0); //runs recursive function
+    return solveHelper(0); //runs recursive function
   }
 
-  public boolean solveHelper(int r, int c){
+  public boolean solveHelper(int c){
     if (c >= board.length) return true; //if all the columns are filled in, board is solved
-    while (r < board.length){
+    for (int r = 0; r < board.length; r++){
       if (addQueen(r,c)){ //if queen can be added
-        if (solveHelper(0,c+1)) return true; //try adding to next column
+        if (solveHelper(c+1)) return true; //try adding to next column
         removeQueen(r,c); //if cannot add to next columns, remove queen
       }
-      r++; //try next row
       if (c == 0 && r >= board.length / 2 + board.length % 2) return false; //if exhausted half of options from first column
     }
     return false; //if none of the rows work, board is unsolveable
@@ -104,20 +103,19 @@ public class QueenBoard{
   */
   public int countSolutions(){
     if (!isEmpty()) throw new IllegalStateException(); //exception
-    int count = countHelper(0,0); //runs recursive function but does not return it
+    int count = countHelper(0); //runs recursive function but does not return it
     clearBoard(); //leaves board filled with 0's after
     return count;
   }
 
-  public int countHelper(int r, int c){ //like solveHelper, but modified to return number of solutions
+  public int countHelper(int c){ //like solveHelper, but modified to return number of solutions
     if (c >= board.length) return 1; //if filled in, counts as one solution
     int count = 0; //counter
-    while (r < board.length){
+    for (int r = 0; r < board.length; r++){
       if (addQueen(r,c)){ //if queen is successfully placed
-        count += countHelper(0,c+1); //recursive call to return either 0 or 1
+        count += countHelper(c+1); //recursive call to return either 0 or 1
         removeQueen(r,c); //removes queen after recursive call
       }
-      r++;
     }
     return count; //after every position has been tried
   }
